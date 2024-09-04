@@ -1,0 +1,3 @@
+spring:
+  datasource:
+    url: jdbc:tc:mysql:8.0://localhost/some_db?TC_MY_CNF=sql/config&TC_INITSCRIPT=file:src/main/resources/sql/schema.sql
