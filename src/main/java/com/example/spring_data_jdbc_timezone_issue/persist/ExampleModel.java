@@ -10,7 +10,7 @@ import org.springframework.data.relational.core.mapping.Table;
 @Table("example_table")
 public class ExampleModel {
   @Id
-  private Long id;
+  public Long id;
 
   @Version
   private Integer version;

@@ -12,7 +12,7 @@ public class ConverterConfig extends AbstractJdbcConfiguration {
   public JdbcCustomConversions jdbcCustomConversions() {
     return new JdbcCustomConversions(
         Arrays.asList(
-            new InstantWritingConverter()
+//            new InstantWritingConverter()
         )
     );
   }
