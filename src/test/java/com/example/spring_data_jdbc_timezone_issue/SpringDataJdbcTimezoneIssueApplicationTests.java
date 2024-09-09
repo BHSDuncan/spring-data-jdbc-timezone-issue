@@ -10,7 +10,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.time.Clock;
 import java.time.Instant;
-import java.time.LocalDateTime;
+import java.util.TimeZone;
 
 @Import(TestcontainersConfiguration.class)
 @SpringBootTest
@@ -32,11 +32,13 @@ class SpringDataJdbcTimezoneIssueApplicationTests {
 		Object selectedViaJDBC = jdbcTemplate.queryForObject("select dt_created from example_table where id = ?", Object.class, exampleModel.id);
 		String instantAsString = jdbcTemplate.queryForObject("select date_format(dt_created,'%H:%i:%s') from example_table where id = ?", String.class, exampleModel.id);
 
-
-		System.out.println(persistedInstant);
-		System.out.println(selectedViaJDBC);
-		System.out.println(instantAsString);
-
+		System.out.println("----------------------------------------------");
+		System.out.println("Instant.now(Clock.systemUTC())):\t"+ Instant.now(Clock.systemUTC()));
+		System.out.println("Instant.now():\t" + Instant.now());
+		System.out.println("persisted: \t\t" + persistedInstant);
+		System.out.println("selected via JDBC:\t" + selectedViaJDBC + " (" + selectedViaJDBC.getClass().getName() + ")");
+		System.out.println("selected as String:\t"+ instantAsString);
+		System.out.println("----------------------------------------------");
 	}
 
 }
