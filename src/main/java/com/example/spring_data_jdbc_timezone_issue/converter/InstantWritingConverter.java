@@ -21,8 +21,8 @@ import org.springframework.stereotype.Component;
  * 
  */
 
-@Component
-@WritingConverter
+//@Component
+//@WritingConverter
 public class InstantWritingConverter implements Converter<Instant, JdbcValue> {
 
   @Override

@@ -10,15 +10,15 @@ import org.springframework.data.relational.core.mapping.Table;
 @Table("example_table")
 public class ExampleModel {
   @Id
-  private Long id;
+  public Long id;
 
   @Version
   private Integer version;
 
   private Instant dtCreated;
 
-  public ExampleModel(Clock clock) {
-    dtCreated = Instant.now(clock);
+  public ExampleModel() {
+    dtCreated = Instant.now();
   }
   
   public Instant getDtCreated() {
