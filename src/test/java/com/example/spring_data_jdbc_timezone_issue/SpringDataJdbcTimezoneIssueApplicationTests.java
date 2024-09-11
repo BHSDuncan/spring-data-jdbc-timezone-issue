@@ -12,6 +12,8 @@ import java.time.Clock;
 import java.time.Instant;
 import java.util.TimeZone;
 
+import static org.assertj.core.api.AssertionsForClassTypes.*;
+
 @Import(TestcontainersConfiguration.class)
 @SpringBootTest
 class SpringDataJdbcTimezoneIssueApplicationTests {
@@ -43,6 +45,7 @@ class SpringDataJdbcTimezoneIssueApplicationTests {
 		System.out.println("reloaded:\t\t"+ reloaded);
 		System.out.println("----------------------------------------------");
 
+		assertThat(reloaded).isEqualTo(persistedInstant);
 	}
 
 }
