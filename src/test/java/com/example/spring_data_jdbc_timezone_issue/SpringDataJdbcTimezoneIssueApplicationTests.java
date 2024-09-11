@@ -25,9 +25,11 @@ class SpringDataJdbcTimezoneIssueApplicationTests {
 	@Test
 	void persistInstant() {
 
-		ExampleModel exampleModel = repository.save(new ExampleModel(Clock.systemUTC()));
+		ExampleModel exampleModel = repository.save(new ExampleModel());
 
 		Instant persistedInstant = exampleModel.getDtCreated();
+
+		Instant reloaded = repository.findById(exampleModel.id).orElseThrow().getDtCreated();
 
 		Object selectedViaJDBC = jdbcTemplate.queryForObject("select dt_created from example_table where id = ?", Object.class, exampleModel.id);
 		String instantAsString = jdbcTemplate.queryForObject("select date_format(dt_created,'%H:%i:%s') from example_table where id = ?", String.class, exampleModel.id);
@@ -38,7 +40,9 @@ class SpringDataJdbcTimezoneIssueApplicationTests {
 		System.out.println("persisted: \t\t" + persistedInstant);
 		System.out.println("selected via JDBC:\t" + selectedViaJDBC + " (" + selectedViaJDBC.getClass().getName() + ")");
 		System.out.println("selected as String:\t"+ instantAsString);
+		System.out.println("reloaded:\t\t"+ reloaded);
 		System.out.println("----------------------------------------------");
+
 	}
 
 }

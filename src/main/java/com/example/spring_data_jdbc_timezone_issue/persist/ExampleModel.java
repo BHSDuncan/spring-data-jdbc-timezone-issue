@@ -17,8 +17,8 @@ public class ExampleModel {
 
   private Instant dtCreated;
 
-  public ExampleModel(Clock clock) {
-    dtCreated = Instant.now(clock);
+  public ExampleModel() {
+    dtCreated = Instant.now();
   }
   
   public Instant getDtCreated() {
